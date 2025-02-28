@@ -4,21 +4,21 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# Load Titanic dataset
-@st.cache_data
+#Load titanic dataset
+
+@st.cache
+
+#@st . cache
 def load_data():
-   # data = pd.read_csv(r'C:\Users\A3MAX SOFTWARE TECH\A VS CODE\EDA_Explaratory Data Analysis\titanic dataset.csv')
-    data=pd.read_csv(r'C:\Anitha\Data Science2\titanic dataset.csv')
+        data=pd.read_csv(r'C:\Anitha\Data Science2\titanic dataset.csv')
+        return data
 
-    return data
+data = load_data
 
-data = load_data()
-
-# Title and description
+## Title and description
 st.title('Exploratory Data Analysis of Titanic Dataset')
 st.write('This is an EDA on the Titanic dataset.')
 st.write('First few rows of the dataset:')
-
 st.dataframe(data.head())
 
 # Data Cleaning Section
@@ -28,9 +28,8 @@ st.write(missing_data)
 
 if st.checkbox('Fill missing Age with median'):
     data['Age'].fillna(data['Age'].median(), inplace=True)
-
-if st.checkbox('Fill missing Embarked with mode'):
-    data['Embarked'].fillna(data['Embarked'].mode()[0], inplace=True)
+    if st.checkbox('Fill missing Embarked with mode'):
+       data['Embarked'].fillna(data['Embarked'].mode()[0], inplace=True)
 
 if st.checkbox('Drop duplicates'):
     data.drop_duplicates(inplace=True)
@@ -86,6 +85,6 @@ insights = """
 - Females have a higher survival rate than males.
 - Passengers in 1st class had the highest survival rate.
 - The majority of passengers are in Pclass 3.
-- Younger passengers tended to survive more often.
-"""
+- Younger passengers tended to survive more often."""
+
 st.write(insights)
